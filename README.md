@@ -9,23 +9,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget pulvinar 
 - Docker
 - Node
 
-## Setup
-
-Clone this template repo as a new repo (command line)
-
-        $ git clone https://github.com/charlon/axdd-django-vue new-repo
-
-OR.. using the Gihub interface, click on the "Use this template" button. Github will automatically clone this repo and setup everything for you.
-
 ## Configuration
-
-Find and replace the following instances for the repo.
-
-'axdd-django-vue' with 'new-repo'
-
-Find and replace the following instance of the django mongo_rest.
-
-'mongo_rest' with 'new_app'
 
 Copy the sample .env file so that your environment can be run.
 
@@ -35,7 +19,7 @@ Copy the sample .env file so that your environment can be run.
 
 Go to your newly created repository
 
-        $ cd new-repo
+        $ cd mongo-restapi
 
 Docker/Docker Compose is used to containerize your local build environment and deploy it to an 'app' container which is exposed to your localhost so you can view your application. Docker Compose creates a 'devtools' container - which is used for local development. Changes made locally are automatically syncd to the 'app' container
 
