@@ -22,3 +22,15 @@ services:
       - ./mongo_rest:/devtools/mongo-restapi/mongo_rest
     working_dir: /devtools/mongo-restapi
     command: bash -c "yes yes | npm install; npx webpack --watch --mode=development"
+  database:
+    container_name: mongo_rest_database
+    image: mongo
+    environment:
+      - MONGO_INIT_DATABASE=your-db-name
+      - MONGO_INITDB_ROOT_USERNAME=root-username
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initidb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
