@@ -26,9 +26,9 @@ services:
     container_name: mongo_rest_database
     image: mongo
     environment:
-      - MONGO_INIT_DATABASE=your-db-name
-      - MONGO_INITDB_ROOT_USERNAME=root-username
-      - MONGO_INITDB_ROOT_PASSWORD=secret
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initidb.d/init-mongo.js:ro
       - ./mongo-volume:/data/db
