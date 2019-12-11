@@ -3,6 +3,7 @@
 *Dockerfile*
 *docker-compose*
 node_modules
+mongo-volume
 
 .Python
 build/
