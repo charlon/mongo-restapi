@@ -16,10 +16,10 @@ before_script:
   - pip install .
   - cp travis/manage.py manage.py
 script:
-  - pycodestyle app_name/ --exclude=migrations,app_name/static
+  - pycodestyle mongo_rest/ --exclude=migrations,mongo_rest/static
   - ./node_modules/.bin/stylelint '**/*.vue' '**/*.css' '**/*.scss'
-  - ./node_modules/.bin/eslint --ext .js,.vue app_name/static/app_name/js/components/
-  - ./node_modules/.bin/eslint --ext .js,.vue app_name/static/app_name/js/pages/
-  - coverage run --source=app_name/ --omit=app_name/migrations/* manage.py test app_name
+  - ./node_modules/.bin/eslint --ext .js,.vue mongo_rest/static/mongo_rest/js/components/
+  - ./node_modules/.bin/eslint --ext .js,.vue mongo_rest/static/mongo_rest/js/pages/
+  - coverage run --source=mongo_rest/ --omit=mongo_rest/migrations/* manage.py test mongo_rest
 after_success:
   - coveralls

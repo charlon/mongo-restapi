@@ -4,7 +4,7 @@ USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
 USER acait
 
-ADD --chown=acait:acait app_name/VERSION /app/app_name/
+ADD --chown=acait:acait mongo_rest/VERSION /app/mongo_rest/
 ADD --chown=acait:acait setup.py /app/
 ADD --chown=acait:acait requirements.txt /app/
 
@@ -28,6 +28,6 @@ RUN npx webpack --mode=production
 FROM django
 
 
-COPY --chown=acait:acait --from=wpack /app/app_name/static/app_name/bundles/* /app/app_name/static/app_name/bundles/
-COPY --chown=acait:acait --from=wpack /app/app_name/static/ /static/
-COPY --chown=acait:acait --from=wpack /app/app_name/static/webpack-stats.json /app/app_name/static/webpack-stats.json
+COPY --chown=acait:acait --from=wpack /app/mongo_rest/static/mongo_rest/bundles/* /app/mongo_rest/static/mongo_rest/bundles/
+COPY --chown=acait:acait --from=wpack /app/mongo_rest/static/ /static/
+COPY --chown=acait:acait --from=wpack /app/mongo_rest/static/webpack-stats.json /app/mongo_rest/static/webpack-stats.json

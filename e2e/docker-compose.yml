@@ -3,14 +3,14 @@ version: '3'
 services:
   prereqmap:
     restart: always
-    container_name: app_name_e2e
+    container_name: mongo_rest_e2e
     build: ../
     env_file:
       - ../.env
     volumes:
-      - ../app_name:/app/app_name
+      - ../mongo_rest:/app/mongo_rest
   cypress:
-    container_name: app_name_cypress
+    container_name: mongo_rest_cypress
     build:
       context: .
       args:

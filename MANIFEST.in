@@ -1,1 +1,1 @@
-include app_name/VERSION
+include mongo_rest/VERSION

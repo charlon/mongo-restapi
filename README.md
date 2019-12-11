@@ -1,4 +1,4 @@
-# app_name
+# mongo_rest
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget pulvinar est.
 
@@ -23,9 +23,9 @@ Find and replace the following instances for the repo.
 
 'axdd-django-vue' with 'new-repo'
 
-Find and replace the following instance of the django app_name.
+Find and replace the following instance of the django mongo_rest.
 
-'app_name' with 'new_app'
+'mongo_rest' with 'new_app'
 
 Copy the sample .env file so that your environment can be run.
 

@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpack_loader',
-    'app_name'
+    'mongo_rest'
 ]
 
 MIDDLEWARE = [
@@ -81,14 +81,14 @@ STATICFILES_FINDERS = (
     #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-DATA_ROOT = os.path.join(BASE_DIR, "app_name/data")
+DATA_ROOT = os.path.join(BASE_DIR, "mongo_rest/data")
 
 # webpack loader (vuejs)
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'app_name/bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'app_name', 'static', 'webpack-stats.json'),
+        'BUNDLE_DIR_NAME': 'mongo_rest/bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'mongo_rest', 'static', 'webpack-stats.json'),
     }
 }
 
