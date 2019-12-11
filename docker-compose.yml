@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  app:
+    environment:
+      - GOOGLE_ANALYTICS_KEY=${GOOGLE_ANALYTICS_KEY}
+    restart: always
+    container_name: app_name_app
+    build:
+      context: .
+    volumes:
+      - ./app_name:/app/app_name
+    ports:
+      - "${RUNSERVER_PORT:-8000}:8000"
+  devtools:
+    restart: always
+    container_name: app_name_devtools
+    image: node:8.16.0-jessie
+    volumes:
+      - ./package.json:/devtools/axdd-django-vue/package.json
+      - ./webpack.config.js:/devtools/axdd-django-vue/webpack.config.js
+      - ./app_name:/devtools/axdd-django-vue/app_name
+    working_dir: /devtools/axdd-django-vue
+    command: bash -c "yes yes | npm install; npx webpack --watch --mode=development"

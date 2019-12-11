@@ -1,0 +1,25 @@
+dist: xenial
+sudo: false
+language: python
+python:
+  - "3.6"
+addons:
+  apt:
+    packages:
+      - gcc-4.8
+      - unixodbc-dev
+install:
+  - pip install pycodestyle
+before_script:
+  - pip install coveralls
+  - npm install
+  - pip install .
+  - cp travis/manage.py manage.py
+script:
+  - pycodestyle app_name/ --exclude=migrations,app_name/static
+  - ./node_modules/.bin/stylelint '**/*.vue' '**/*.css' '**/*.scss'
+  - ./node_modules/.bin/eslint --ext .js,.vue app_name/static/app_name/js/components/
+  - ./node_modules/.bin/eslint --ext .js,.vue app_name/static/app_name/js/pages/
+  - coverage run --source=app_name/ --omit=app_name/migrations/* manage.py test app_name
+after_success:
+  - coveralls
