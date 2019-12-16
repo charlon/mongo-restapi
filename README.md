@@ -39,3 +39,7 @@ In the case that changes are made to the Dockerfile or docker-compose.yml file, 
 View your application
 
         Demo: http://localhost:8000/
+
+## Mongo (using Compass)
+
+Connect to your Mongo database using the credentials specified in the init-mongo.js file.
