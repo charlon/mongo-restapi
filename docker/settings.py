@@ -4,6 +4,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += [
     'webpack_loader',
+    'rest_framework'
+    'rest_framework_mongoengine',
     'mongo_rest'
 ]
 

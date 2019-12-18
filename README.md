@@ -8,6 +8,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget pulvinar 
 - Django (2+)
 - Docker
 - Node
+- Mongo Compass (application)
+
+## Installation
+
+Clone this repository
+
+        $ git clone https://github.com/charlon/mongo-restapi
+
+Go to your newly created repository
+
+        $ cd mongo-restapi
 
 ## Configuration
 
@@ -16,10 +27,6 @@ Copy the sample .env file so that your environment can be run.
         $ cp .env.sample .env
 
 ## Development (using Docker)
-
-Go to your newly created repository
-
-        $ cd mongo-restapi
 
 Docker/Docker Compose is used to containerize your local build environment and deploy it to an 'app' container which is exposed to your localhost so you can view your application. Docker Compose creates a 'devtools' container - which is used for local development. Changes made locally are automatically syncd to the 'app' container
 
@@ -32,3 +39,7 @@ In the case that changes are made to the Dockerfile or docker-compose.yml file, 
 View your application
 
         Demo: http://localhost:8000/
+
+## Mongo (using Compass)
+
+Connect to your Mongo database using the credentials specified in the init-mongo.js file.
