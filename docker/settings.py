@@ -1,4 +1,5 @@
 from .base_settings import *
+from mongoengine import connect
 
 ALLOWED_HOSTS = ['*']
 
@@ -45,3 +46,10 @@ TEMPLATES = [
 
 if os.getenv("ENV") == "localdev":
     DEBUG = True
+
+mongoengine.connect(
+    db="my-database-name",
+    username='YourUsername',
+    password='YourPasswordHere',
+    host='localhost'
+)
