@@ -2,6 +2,7 @@ from rest_framework_mongoengine import viewsets
 from mongo_rest.serializers import SpotSerializer
 from mongo_rest.models import Spot
 
+
 class SpotViewSet(viewsets.ModelViewSet):
     '''
     Contains information about inputs/outputs of a single program
