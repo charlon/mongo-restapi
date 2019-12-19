@@ -5,7 +5,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += [
     'webpack_loader',
-    'rest_framework'
+    'rest_framework',
     'rest_framework_mongoengine',
     'mongo_rest'
 ]
@@ -47,9 +47,10 @@ TEMPLATES = [
 if os.getenv("ENV") == "localdev":
     DEBUG = True
 
-mongoengine.connect(
+
+connect(
     db="my-database-name",
     username='YourUsername',
     password='YourPasswordHere',
-    host='localhost'
+    host='localhost',
 )
