@@ -1,7 +1,7 @@
 from django.urls import include, path, re_path
 from django.views.generic.base import RedirectView
 from mongo_rest.views.pages import PageView
-from mongo_rest.viewsets import SpotViewSet
+from mongo_rest.views.api import SpotViewSet
 
 from rest_framework import routers
 
