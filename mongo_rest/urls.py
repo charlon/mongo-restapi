@@ -1,11 +1,12 @@
 from django.urls import include, path, re_path
 from django.views.generic.base import RedirectView
 from mongo_rest.views.pages import PageView
+from mongo_rest.viewsets import SpotViewSet
 
 from rest_framework import routers
 
 # this is DRF router for REST API viewsets
-router = routers.DefaultRouter()
+router = DefaultRouter(trailing_slash=False)
 
 # register REST API endpoints with DRF router
 router.register(r'spot', SpotViewSet, r"spot")
