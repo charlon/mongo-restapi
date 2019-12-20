@@ -26,10 +26,7 @@ setup(
     install_requires=[
         'django>=2.1,<2.3',
         'django-webpack-loader',
-        'djangorestframework',
-        'django-rest-framework-mongoengine',
-        'pymongo',
-        'mongoengine'
+        'pymongo'
     ],
     license='Apache License, Version 2.0',
     description='A tool for visually displaying UW course prerequisites',
