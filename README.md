@@ -1,6 +1,6 @@
 # mongo_rest
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget pulvinar est.
+VueJS client app. Django server with REST API using Pymongo. Mongo database.
 
 ## System Requirements
 
@@ -36,10 +36,10 @@ In the case that changes are made to the Dockerfile or docker-compose.yml file, 
 
         $ docker-compose up --build
 
-View your application
+View your Vue.js application
 
         Demo: http://localhost:8000/
 
-## Mongo (using Compass)
+## Mongo Compass
 
-Connect to your Mongo database using the credentials specified in the init-mongo.js file.
+Connect to your Mongo database using the Mongo credentials specified in the '.env' file
