@@ -1,5 +1,8 @@
 version: '3'
 
+networks:
+  mongo-net:
+    driver: bridge
 services:
   app:
     environment:
@@ -12,6 +15,8 @@ services:
       - ./mongo_rest:/app/mongo_rest
     ports:
       - "${RUNSERVER_PORT:-8000}:8000"
+    networks:
+      - mongo-net
   devtools:
     restart: always
     container_name: mongo_rest_devtools
@@ -22,16 +27,18 @@ services:
       - ./mongo_rest:/devtools/mongo-restapi/mongo_rest
     working_dir: /devtools/mongo-restapi
     command: bash -c "yes yes | npm install; npx webpack --watch --mode=development"
-  database:
+  db:
     restart: always
-    container_name: mongo_rest_database
-    image: mongo
+    container_name: mongo_rest_db
+    image: bitnami/mongodb:latest
     environment:
-      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
     volumes:
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-      - ./mongo-volume:/data/db
+      - ./mongo-volume:/bitnami
     ports:
       - '27017-27019:27017-27019'
+    networks:
+      - mongo-net
