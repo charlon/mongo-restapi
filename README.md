@@ -48,7 +48,7 @@ On the initial first build, 'mongo-volume' will be created and mounted. This vol
 The MongoDB server can be accessed from 'mongo_rest_db:27017' internally. Externally (from Compass or the viewer of your choice - 'localhost:27017'). Use the username/password specified in your .env file respectively.
 
 
-# Data Management
+## Collections
 
 Run Docker exec to bring up a bash console for your app container
 
