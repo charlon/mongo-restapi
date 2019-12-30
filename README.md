@@ -8,7 +8,7 @@ VueJS client app. Django server with REST API using Pymongo. Mongo database.
 - Django (2+)
 - Docker
 - Node
-- Mongo Compass (application)
+- Mongo Compass (optional)
 
 ## Installation
 
@@ -40,6 +40,8 @@ View your Vue.js application
 
         Demo: http://localhost:8000/
 
-## Mongo Compass
+## Mongo
 
-Connect to your Mongo database using the Mongo credentials specified in the '.env' file
+On the initial first build, 'mongo-volume' will be created and mounted to the Bitnami directory. This volume will allow your database to persist for future builds. Delete this directory to clear your data.
+
+Connect (with Compass or the database viewer of your choice) to your Mongo database using the Mongo credentials specified in the '.env' file
