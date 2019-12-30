@@ -18,10 +18,12 @@ class Command(BaseCommand):
 
         print(db.name)
 
-        # create empty collections
-        db.create_collection('spots')
-        db.create_collection('buildings')
-
         # list the collections
         collist = db.list_collection_names()
-        print(collist)
+
+        # check if collections exist, else create empty collections
+        if ("spots" or "buildings") in collist:
+            print(collist)
+        else:
+            db.create_collection('spots')
+            db.create_collection('buildings')
