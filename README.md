@@ -40,8 +40,23 @@ View your Vue.js application
 
         Demo: http://localhost:8000/
 
-## Mongo
 
-On the initial first build, 'mongo-volume' will be created and mounted to the Bitnami directory. This volume will allow your database to persist for future builds. Delete this directory to clear your data.
+# Fixtures
 
-Connect (with Compass or the database viewer of your choice) to your Mongo database using the Mongo credentials specified in the '.env' file
+Run Docker exec to bring up a bash console for your app container
+
+$ docker exec -it rest_api_app /bin/bash
+
+Activate virtualenv and then run the 'create_collection' managment command to create your empty collections
+
+$ source bin/activate
+$ python manage.py create_collections
+
+
+## MongoDB
+
+On the initial first build, 'mongo-volume' will be created and mounted. This volume will allow your database to persist for future builds. Delete this directory to clear your data.
+
+The MongoDB server can be accessed from 'mongo_rest_db:27017' internally. Externally (from Compass or the viewer of your choice - 'localhost:27017'). Use the username/password specified in your .env file respectively.
+
+

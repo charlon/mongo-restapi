@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-  mongo-net:
+  app-tier:
     driver: bridge
 services:
   app:
@@ -16,7 +16,7 @@ services:
     ports:
       - "${RUNSERVER_PORT:-8000}:8000"
     networks:
-      - mongo-net
+      - app-tier
   devtools:
     restart: always
     container_name: mongo_rest_devtools
@@ -41,4 +41,4 @@ services:
     ports:
       - '27017-27019:27017-27019'
     networks:
-      - mongo-net
+      - app-tier
