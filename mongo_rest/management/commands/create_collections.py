@@ -25,5 +25,49 @@ class Command(BaseCommand):
         if ("spots" or "buildings") in collist:
             print(collist)
         else:
-            db.create_collection('spots')
-            db.create_collection('buildings')
+
+            #create collections
+            buildingCollection = db["buildings"]
+            spotCollection = db["spots"]
+
+            # seed buildings
+            buildingList = [
+                { "name": "Mary Gates Hall (MGH)" },
+                { "name": "Odegaard Undergraduate Library (OUG)" },
+                { "name": "Johnson Hall (JHN)" },
+                { "name": "Kane Hall (KNE)" },
+                { "name": "Suzzallo Library (SUZ)" }
+            ]
+
+            buildingCollection.insert_many(buildingList)
+
+            # seed spots
+            spotList = [
+                {
+                    "name": "Mary Gates Espresso",
+                    "type": "cafe",
+                    "building" : "blah"
+                },
+                {
+                    "name": "Motosurf",
+                    "type": "food truck",
+                    "building" : "blah"
+                },
+                {
+                    "name": "Sunrise Griddle",
+                    "type": "food truck",
+                    "building" : "blah"
+                },
+                {
+                    "name": "DUB Street Burgers, Husky Den",
+                    "type": "food court",
+                    "building" : "blah"
+                },
+                {
+                    "name": "Pagliacci Pizza, Husky Den",
+                    "type": "food court",
+                    "building" : "blah"
+                }
+            ]
+
+            spotCollection.insert_many(spotList)
