@@ -30,7 +30,7 @@ class Command(BaseCommand):
 
         # check if collections have data... drop them and start fresh
         if ("spots" or "buildings") in collections:
-            print("dropping data")
+            print("dropping collections")
             if (buildings.count()):
                 buildings.drop()
             if (spots.count()):
@@ -65,6 +65,7 @@ class Command(BaseCommand):
             }
         ]
 
+        print("inserting buildings")
         buildings.insert_many(buildingList)
 
         # spots json
@@ -72,28 +73,29 @@ class Command(BaseCommand):
             {
                 "name": "Mary Gates Espresso",
                 "type": "cafe",
-                "building": buildings.find_one({"name": "Mary Gates Hall"})
+                "building": buildings.find_one({"code": "MGH"})
             },
             {
                 "name": "Motosurf",
                 "type": "food truck",
-                "building": buildings.find_one({"name": "Odegaard Undergraduate Library"})
+                "building": buildings.find_one({"code": "OUG"})
             },
             {
                 "name": "Sunrise Griddle",
                 "type": "food truck",
-                "building": buildings.find_one({"name": "Johnson Hall"})
+                "building": buildings.find_one({"code": "JHN"})
             },
             {
                 "name": "DUB Street Burgers, Husky Den",
                 "type": "food court",
-                "building": buildings.find_one({"name": "Kane Hall"})
+                "building": buildings.find_one({"code": "KNE"})
             },
             {
                 "name": "Pagliacci Pizza, Husky Den",
                 "type": "food court",
-                "building": buildings.find_one({"name": "Suzzallo Library"})
+                "building": buildings.find_one({"code": "SUZ"})
             }
         ]
 
+        print("inserting spots")
         spots.insert_many(spotList)
