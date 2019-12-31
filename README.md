@@ -52,7 +52,7 @@ The MongoDB server can be accessed from 'mongo_rest_db:27017' internally. Extern
 
 Run Docker exec to bring up a bash console for your app container
 
-        $ docker exec -it rest_api_app /bin/bash
+        $ docker exec -it mongo_rest_app /bin/bash
 
 Activate virtualenv
 

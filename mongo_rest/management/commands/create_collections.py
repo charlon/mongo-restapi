@@ -19,27 +19,28 @@ class Command(BaseCommand):
         print(db.name)
 
         # list the collections
-        collist = db.list_collection_names()
+        collections = db.list_collection_names()
 
         # check if collections exist, else create empty collections
-        if ("spots" or "buildings") in collist:
-            print(collist)
+        if ("spots" or "buildings") in collections:
+            print(collections)
         else:
 
-            #create collections
-            buildingCollection = db["buildings"]
-            spotCollection = db["spots"]
+            # create collections
+
+            buildings = db["buildings"]
+            spots = db["spots"]
 
             # seed buildings
             buildingList = [
-                {"name": "Mary Gates Hall (MGH)"},
-                {"name": "Odegaard Undergraduate Library (OUG)"},
-                {"name": "Johnson Hall (JHN)"},
-                {"name": "Kane Hall (KNE)"},
-                {"name": "Suzzallo Library (SUZ)"}
+                {"name": "Mary Gates Hall", "code": "MGH"},
+                {"name": "Odegaard Undergraduate Library" "code": "OUG"},
+                {"name": "Johnson Hall" "code": "JHN"},
+                {"name": "Kane Hall" "code": "KNE"},
+                {"name": "Suzzallo Library" "code": "SUZ"}
             ]
 
-            buildingCollection.insert_many(buildingList)
+            buildings.insert_many(buildingList)
 
             # seed spots
             spotList = [
@@ -70,4 +71,4 @@ class Command(BaseCommand):
                 }
             ]
 
-            spotCollection.insert_many(spotList)
+            spots.insert_many(spotList)
