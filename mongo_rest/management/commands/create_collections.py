@@ -34,10 +34,10 @@ class Command(BaseCommand):
             # seed buildings
             buildingList = [
                 {"name": "Mary Gates Hall", "code": "MGH"},
-                {"name": "Odegaard Undergraduate Library" "code": "OUG"},
-                {"name": "Johnson Hall" "code": "JHN"},
-                {"name": "Kane Hall" "code": "KNE"},
-                {"name": "Suzzallo Library" "code": "SUZ"}
+                {"name": "Odegaard Undergraduate Library", "code": "OUG"},
+                {"name": "Johnson Hall", "code": "JHN"},
+                {"name": "Kane Hall", "code": "KNE"},
+                {"name": "Suzzallo Library", "code": "SUZ"}
             ]
 
             buildings.insert_many(buildingList)
@@ -46,28 +46,23 @@ class Command(BaseCommand):
             spotList = [
                 {
                     "name": "Mary Gates Espresso",
-                    "type": "cafe",
-                    "building": "blah"
+                    "type": "cafe"
                 },
                 {
                     "name": "Motosurf",
-                    "type": "food truck",
-                    "building": "blah"
+                    "type": "food truck"
                 },
                 {
                     "name": "Sunrise Griddle",
-                    "type": "food truck",
-                    "building : "blah"
+                    "type": "food truck"
                 },
                 {
                     "name": "DUB Street Burgers, Husky Den",
-                    "type": "food court",
-                    "building": "blah"
+                    "type": "food court"
                 },
                 {
                     "name": "Pagliacci Pizza, Husky Den",
-                    "type": "food court",
-                    "building": "blah"
+                    "type": "food court"
                 }
             ]
 
