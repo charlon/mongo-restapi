@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.dbref import DBRef
+from bson.json_util import dumps
 load_dotenv()
 
 
@@ -105,6 +106,7 @@ class Command(BaseCommand):
         print("inserting spots")
         spots.insert_many(spotList)
 
-        # example: find all spots that have building set as 'kane hall'
-        for x in spots.find({"building.code": "KNE"}):
-            print(x)
+        # API endpoint example: find all spots that have building set as 'kane hall'
+        # dumps the query results into json format
+        kaneSpots = dumps(spots.find({"building.code": "KNE"}))
+        print(kaneSpots)
