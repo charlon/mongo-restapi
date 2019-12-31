@@ -106,5 +106,5 @@ class Command(BaseCommand):
         spots.insert_many(spotList)
 
         # example: find all spots that have building set as 'kane hall'
-        for x in spots.find({"building.name": "Kane Hall"}):
+        for x in spots.find({"building.code": "KNE"}):
             print(x)
