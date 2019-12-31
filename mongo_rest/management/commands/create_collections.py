@@ -94,8 +94,17 @@ class Command(BaseCommand):
                 "name": "Pagliacci Pizza, Husky Den",
                 "type": "food court",
                 "building": buildings.find_one({"code": "SUZ"})
-            }
+            },
+            {
+                "name": "Pagliacci Pizza, Kane Basement",
+                "type": "food court",
+                "building": buildings.find_one({"code": "KNE"})
+            },
         ]
 
         print("inserting spots")
         spots.insert_many(spotList)
+
+        # example: find all spots that have building set as 'kane hall'
+        for x in spots.find({"building.name": "Kane Hall"}):
+            print(x)
