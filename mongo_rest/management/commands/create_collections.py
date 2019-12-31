@@ -2,6 +2,8 @@ import os
 from django.core.management.base import BaseCommand
 from dotenv import load_dotenv
 from pymongo import MongoClient
+from bson.objectid import ObjectId
+from bson.dbref import DBRef
 load_dotenv()
 
 
@@ -20,50 +22,78 @@ class Command(BaseCommand):
 
         # list the collections
         collections = db.list_collection_names()
+        print(collections)
 
-        # check if collections exist, else create empty collections
+        # get/create empty collection
+        buildings = db["buildings"]
+        spots = db["spots"]
+
+        # check if collections have data... drop them and start fresh
         if ("spots" or "buildings") in collections:
-            print(collections)
-        else:
+            print("dropping data")
+            if (buildings.count()):
+                buildings.drop()
+            if (spots.count()):
+                spots.drop()
 
-            # create collections
+        # buildings json
+        buildingList = [
+            {
+                "name": "Mary Gates Hall",
+                "code": "MGH",
+                "hours": "asdfjadsf"
+            },
+            {
+                "name": "Odegaard Undergraduate Library",
+                "code": "OUG",
+                "hours": "asdfjadsf"
+            },
+            {
+                "name": "Johnson Hall",
+                "code": "JHN",
+                "hours": "asdfjadsf"
+            },
+            {
+                "name": "Kane Hall",
+                "code": "KNE",
+                "hours": "asdfjadsf"
+            },
+            {
+                "name": "Suzzallo Library",
+                "code": "SUZ",
+                "hours": "asdfjadsf"
+            }
+        ]
 
-            buildings = db["buildings"]
-            spots = db["spots"]
+        buildings.insert_many(buildingList)
 
-            # seed buildings
-            buildingList = [
-                {"name": "Mary Gates Hall", "code": "MGH"},
-                {"name": "Odegaard Undergraduate Library", "code": "OUG"},
-                {"name": "Johnson Hall", "code": "JHN"},
-                {"name": "Kane Hall", "code": "KNE"},
-                {"name": "Suzzallo Library", "code": "SUZ"}
-            ]
+        # spots json
+        spotList = [
+            {
+                "name": "Mary Gates Espresso",
+                "type": "cafe",
+                "building": buildings.find_one({"name": "Mary Gates Hall"})
+            },
+            {
+                "name": "Motosurf",
+                "type": "food truck",
+                "building": buildings.find_one({"name": "Odegaard Undergraduate Library"})
+            },
+            {
+                "name": "Sunrise Griddle",
+                "type": "food truck",
+                "building": buildings.find_one({"name": "Johnson Hall"})
+            },
+            {
+                "name": "DUB Street Burgers, Husky Den",
+                "type": "food court",
+                "building": buildings.find_one({"name": "Kane Hall"})
+            },
+            {
+                "name": "Pagliacci Pizza, Husky Den",
+                "type": "food court",
+                "building": buildings.find_one({"name": "Suzzallo Library"})
+            }
+        ]
 
-            buildings.insert_many(buildingList)
-
-            # seed spots
-            spotList = [
-                {
-                    "name": "Mary Gates Espresso",
-                    "type": "cafe"
-                },
-                {
-                    "name": "Motosurf",
-                    "type": "food truck"
-                },
-                {
-                    "name": "Sunrise Griddle",
-                    "type": "food truck"
-                },
-                {
-                    "name": "DUB Street Burgers, Husky Den",
-                    "type": "food court"
-                },
-                {
-                    "name": "Pagliacci Pizza, Husky Den",
-                    "type": "food court"
-                }
-            ]
-
-            spots.insert_many(spotList)
+        spots.insert_many(spotList)
