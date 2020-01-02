@@ -106,7 +106,7 @@ class Command(BaseCommand):
         print("inserting spots")
         spots.insert_many(spotList)
 
-        # API endpoint example: find all spots that have building set as 'kane hall'
+        # API endpoint example: find all spots located in Kane Hall
         # dumps the query results into json format
         kaneSpots = dumps(spots.find({"building.code": "KNE"}))
         print(kaneSpots)
