@@ -14,20 +14,17 @@ class Command(BaseCommand):
         # connect to 'mongo_rest_db' via internal network
         client = MongoClient("mongodb://mongo_rest_db:27017/")
 
-        # provide creds
+        # authenticate to mongodb
         db = client[os.getenv("MONGODB_DATABASE")]
         db.authenticate(os.getenv("MONGODB_USERNAME"),
                         os.getenv("MONGODB_PASSWORD"))
 
-        print(db.name)
+        # get/create empty collections
+        buildings = db["buildings"]
+        spots = db["spots"]
 
         # list the collections
         collections = db.list_collection_names()
-        print(collections)
-
-        # get/create empty collection
-        buildings = db["buildings"]
-        spots = db["spots"]
 
         # check if collections have data... drop them and start fresh
         if ("spots" or "buildings") in collections:
@@ -70,43 +67,39 @@ class Command(BaseCommand):
         buildings.insert_many(buildingList)
 
         # spots json
+        # note.. including {"_id": 0} in the find query will exclude ids
         spotList = [
             {
                 "name": "Mary Gates Espresso",
                 "type": "cafe",
-                "building": buildings.find_one({"code": "MGH"})
+                "building": buildings.find_one({"code": "MGH"}, {"_id": 0})
             },
             {
                 "name": "Motosurf",
                 "type": "food truck",
-                "building": buildings.find_one({"code": "OUG"})
+                "building": buildings.find_one({"code": "OUG"}, {"_id": 0})
             },
             {
                 "name": "Sunrise Griddle",
                 "type": "food truck",
-                "building": buildings.find_one({"code": "JHN"})
+                "building": buildings.find_one({"code": "JHN"}, {"_id": 0})
             },
             {
                 "name": "DUB Street Burgers, Husky Den",
                 "type": "food court",
-                "building": buildings.find_one({"code": "KNE"})
+                "building": buildings.find_one({"code": "KNE"}, {"_id": 0})
             },
             {
                 "name": "Pagliacci Pizza, Husky Den",
                 "type": "food court",
-                "building": buildings.find_one({"code": "SUZ"})
+                "building": buildings.find_one({"code": "SUZ"}, {"_id": 0})
             },
             {
                 "name": "Pagliacci Pizza, Kane Basement",
                 "type": "food court",
-                "building": buildings.find_one({"code": "KNE"})
+                "building": buildings.find_one({"code": "KNE"}, {"_id": 0})
             },
         ]
 
         print("inserting spots")
         spots.insert_many(spotList)
-
-        # API endpoint example: find all spots located in Kane Hall
-        # dumps the query results into json format
-        kaneSpots = dumps(spots.find({"building.code": "KNE"}))
-        print(kaneSpots)
