@@ -28,7 +28,6 @@ services:
     working_dir: /devtools/mongo-restapi
     command: bash -c "yes yes | npm install; npx webpack --watch --mode=development"
   db:
-    restart: always
     container_name: mongo_rest_db
     image: bitnami/mongodb:latest
     environment:
@@ -39,6 +38,6 @@ services:
     volumes:
       - ./mongo-volume:/bitnami
     ports:
-      - '27017-27019:27017-27019'
+      - '27017:27017'
     networks:
       - app-tier

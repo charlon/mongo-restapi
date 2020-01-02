@@ -5,7 +5,6 @@ from django.views import View
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-from bson.dbref import DBRef
 from bson.json_util import dumps
 load_dotenv()
 
@@ -25,12 +24,11 @@ class SpotAPIView(View):
         buildings = db["buildings"]
         spots = db["spots"]
 
-        # API endpoint example: find all spots located in Kane Hall
-        # dumps the query results into json format
-        # kaneSpots = dumps(spots.find({"building.code": "KNE"}))
-        # print(kaneSpots)
+        # example queries - ids are excluded from the final results
+        query = spots.find({}, {"_id": 0})
+        # query = spots.find({"_id": ObjectId("5e0e2d2ec852de2cd7e0cfe4")}, {"_id": 0})
+        # query = spots.find({"building.code": "KNE"}, {"_id": 0})
 
-        # API endpoint example: find all spots
-        # dumps the query results into json format
-        allSpots = dumps(spots.find({}, {"_id": 0}))
-        return HttpResponse(allSpots)
+        # bson.json_util dumps - used for converting bson data to json
+        results = dumps(query)
+        return HttpResponse(results)

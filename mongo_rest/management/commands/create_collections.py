@@ -39,27 +39,67 @@ class Command(BaseCommand):
             {
                 "name": "Mary Gates Hall",
                 "code": "MGH",
-                "hours": "asdfjadsf"
+                "hours": {
+                    "monday": [["08:00", "21:00"]],
+                    "tuesday": [["08:00", "21:00"]],
+                    "wednesday": [["08:00", "21:00"]],
+                    "thursday": [["08:00", "21:00"]],
+                    "friday": [["08:00", "15:00"]],
+                    "saturday": [["09:00", "17:00"]],
+                    "sunday": []
+                }
             },
             {
                 "name": "Odegaard Undergraduate Library",
                 "code": "OUG",
-                "hours": "asdfjadsf"
+                "hours": {
+                    "monday": [["08:00", "21:00"]],
+                    "tuesday": [["08:00", "21:00"]],
+                    "wednesday": [["08:00", "21:00"]],
+                    "thursday": [["08:00", "21:00"]],
+                    "friday": [["08:00", "15:00"]],
+                    "saturday": [["09:00", "17:00"]],
+                    "sunday": []
+                }
             },
             {
                 "name": "Johnson Hall",
                 "code": "JHN",
-                "hours": "asdfjadsf"
+                "hours": {
+                    "monday": [["08:00", "21:00"]],
+                    "tuesday": [["08:00", "21:00"]],
+                    "wednesday": [["08:00", "21:00"]],
+                    "thursday": [["08:00", "21:00"]],
+                    "friday": [["08:00", "15:00"]],
+                    "saturday": [["09:00", "17:00"]],
+                    "sunday": []
+                }
             },
             {
                 "name": "Kane Hall",
                 "code": "KNE",
-                "hours": "asdfjadsf"
+                "hours": {
+                    "monday": [["08:00", "21:00"]],
+                    "tuesday": [["08:00", "21:00"]],
+                    "wednesday": [["08:00", "21:00"]],
+                    "thursday": [["08:00", "21:00"]],
+                    "friday": [["08:00", "15:00"]],
+                    "saturday": [["09:00", "17:00"]],
+                    "sunday": []
+                }
             },
             {
                 "name": "Suzzallo Library",
                 "code": "SUZ",
-                "hours": "asdfjadsf"
+                "hours": {
+                    "monday": [["08:00", "21:00"]],
+                    "tuesday": [["08:00", "21:00"]],
+                    "wednesday": [["08:00", "21:00"]],
+                    "thursday": [["08:00", "21:00"]],
+                    "friday": [["08:00", "15:00"]],
+                    "saturday": [["09:00", "17:00"]],
+                    "sunday": []
+                }
             }
         ]
 
@@ -72,31 +112,85 @@ class Command(BaseCommand):
             {
                 "name": "Mary Gates Espresso",
                 "type": "cafe",
+                "hours": {
+                    "monday": [["08:00", "17:00"]],
+                    "tuesday": [["08:00", "17:00"]],
+                    "wednesday": [["08:00", "17:00"]],
+                    "thursday": [["08:00", "17:00"]],
+                    "friday": [["08:00", "13:00"]],
+                    "saturday": [["09:00", "13:00"]],
+                    "sunday": []
+                },
                 "building": buildings.find_one({"code": "MGH"}, {"_id": 0})
             },
             {
                 "name": "Motosurf",
                 "type": "food truck",
+                "hours": {
+                    "monday": [["08:00", "17:00"]],
+                    "tuesday": [["08:00", "17:00"]],
+                    "wednesday": [["08:00", "17:00"]],
+                    "thursday": [["08:00", "17:00"]],
+                    "friday": [["08:00", "13:00"]],
+                    "saturday": [["09:00", "13:00"]],
+                    "sunday": []
+                },
                 "building": buildings.find_one({"code": "OUG"}, {"_id": 0})
             },
             {
                 "name": "Sunrise Griddle",
                 "type": "food truck",
+                "hours": {
+                    "monday": [["08:00", "17:00"]],
+                    "tuesday": [["08:00", "17:00"]],
+                    "wednesday": [["08:00", "17:00"]],
+                    "thursday": [["08:00", "17:00"]],
+                    "friday": [["08:00", "13:00"]],
+                    "saturday": [["09:00", "13:00"]],
+                    "sunday": []
+                },
                 "building": buildings.find_one({"code": "JHN"}, {"_id": 0})
             },
             {
                 "name": "DUB Street Burgers, Husky Den",
                 "type": "food court",
+                "hours": {
+                    "monday": [["08:00", "17:00"]],
+                    "tuesday": [["08:00", "17:00"]],
+                    "wednesday": [["08:00", "17:00"]],
+                    "thursday": [["08:00", "17:00"]],
+                    "friday": [["08:00", "13:00"]],
+                    "saturday": [["09:00", "13:00"]],
+                    "sunday": []
+                },
                 "building": buildings.find_one({"code": "KNE"}, {"_id": 0})
             },
             {
                 "name": "Pagliacci Pizza, Husky Den",
                 "type": "food court",
+                "hours": {
+                    "monday": [["08:00", "17:00"]],
+                    "tuesday": [["08:00", "17:00"]],
+                    "wednesday": [["08:00", "17:00"]],
+                    "thursday": [["08:00", "17:00"]],
+                    "friday": [["08:00", "13:00"]],
+                    "saturday": [["09:00", "13:00"]],
+                    "sunday": []
+                },
                 "building": buildings.find_one({"code": "SUZ"}, {"_id": 0})
             },
             {
                 "name": "Pagliacci Pizza, Kane Basement",
                 "type": "food court",
+                "hours": {
+                    "monday": [["08:00", "17:00"]],
+                    "tuesday": [["08:00", "17:00"]],
+                    "wednesday": [["08:00", "17:00"]],
+                    "thursday": [["08:00", "17:00"]],
+                    "friday": [["08:00", "13:00"]],
+                    "saturday": [["09:00", "13:00"]],
+                    "sunday": []
+                },
                 "building": buildings.find_one({"code": "KNE"}, {"_id": 0})
             },
         ]
