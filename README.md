@@ -30,7 +30,7 @@ Copy the sample .env file so that your environment can be run.
 
 ## Docker
 
-Docker/Docker Compose is used to containerize your local build environment and deploy it to an 'app' container which is exposed to your localhost so you can view your application. Docker Compose creates a 'devtools' container - which is used for local development. Changes made locally are automatically syncd to the 'app' container
+Docker/Docker Compose is used to containerize your local build environment and deploy it to an 'app' container which is exposed to your localhost so you can view your application. Docker Compose creates a 'devtools' container - which is used for local development. Changes made locally are automatically syncd to the 'app' container. A 'db' container is created for the Mongo database.
 
         $ docker-compose up
 
