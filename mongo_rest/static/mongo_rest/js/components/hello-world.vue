@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    hello world
+    <p>hello world</p>
   </div>
 </template>
 

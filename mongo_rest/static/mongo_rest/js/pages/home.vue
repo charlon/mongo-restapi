@@ -3,7 +3,7 @@
 <template>
   <b-container id="home">
     <hello-world />
-    welcome to my example app!
+    <p>welcome to my example app!</p>
   </b-container>
 </template>
 
