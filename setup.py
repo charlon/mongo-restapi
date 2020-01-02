@@ -3,7 +3,7 @@ from setuptools import setup
 
 README = """
 See the README on `GitHub
-<https://github.com/uw-it-aca/mongo_rest>`_.
+<https://github.com/charlon/mongo-restapi>`_.
 """
 
 # The VERSION file is created by travis-ci, based on the tag name
@@ -15,16 +15,16 @@ VERSION = VERSION.replace("\n", "")
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
-url = "https://github.com/uw-it-aca/mongo_rest"
+url = "https://github.com/charlon/mongo-restapi"
 setup(
     name='mongo_rest',
     version=VERSION,
     packages=['mongo_rest'],
-    author="UW-IT AXDD",
-    author_email="aca-it@uw.edu",
+    author="Charlon Palacay",
+    author_email="charlon@gmail.com",
     include_package_data=True,
     install_requires=[
-        'django>=2.1,<2.3',
+        'django',
         'django-webpack-loader',
         'python-dotenv',
         'pymongo'
