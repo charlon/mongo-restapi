@@ -21,14 +21,15 @@ class SpotAPIView(View):
                         os.getenv("MONGODB_PASSWORD"))
 
         # get/create empty collections
-        buildings = db["buildings"]
-        spots = db["spots"]
+        buildings = db.buildings
+        spots = db.spots
 
         # example queries - ids are excluded from the final results
-        query = spots.find({}, {"_id": 0})
+        query = spots.find({})
         # query = spots.find({"_id": ObjectId("5e0e2d2ec852de2cd7e0cfe4")}, {"_id": 0})
         # query = spots.find({"building.code": "KNE"}, {"_id": 0})
 
-        # bson.json_util dumps - used for converting bson data to json
-        results = dumps(query)
+        # bson.json_util "dumps" - used for converting bson data to json
+        results = query
+
         return HttpResponse(results)

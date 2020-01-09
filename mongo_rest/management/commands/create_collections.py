@@ -121,7 +121,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": DBRef("buildings", buildings.find_one({"code": "MGH"}, "_id"))
+                "building_id": buildings.find_one({"code": "MGH"}, "_id")
             },
             {
                 "name": "Motosurf",
@@ -135,7 +135,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": DBRef("buildings", buildings.find_one({"code": "OUG"}, "_id"))     
+                "building_id": buildings.find_one({"code": "OUG"}, "_id")     
             },
             {
                 "name": "Sunrise Griddle",
@@ -149,7 +149,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": DBRef("buildings", buildings.find_one({"code": "JHN"}, "_id"))     
+                "building_id": buildings.find_one({"code": "JHN"}, "_id")    
             },
             {
                 "name": "DUB Street Burgers, Husky Den",
@@ -163,7 +163,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": DBRef("buildings", buildings.find_one({"code": "KNE"}, "_id"))     
+                "building_id": buildings.find_one({"code": "KNE"}, "_id")     
             },
             {
                 "name": "Pagliacci Pizza, Husky Den",
@@ -177,7 +177,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": DBRef("buildings", buildings.find_one({"code": "SUZ"}, "_id"))     
+                "building_id": buildings.find_one({"code": "SUZ"}, "_id")     
             },
             {
                 "name": "Pagliacci Pizza, Kane Basement",
@@ -191,7 +191,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": DBRef("buildings", buildings.find_one({"code": "KNE"}, "_id"))     
+                "building_id": buildings.find_one({"code": "KNE"}, "_id")     
             },
         ]
 
