@@ -30,13 +30,12 @@ class SpotAPIView(View):
         # query = spots.find({"_id": ObjectId("5e0e2d2ec852de2cd7e0cfe4")}, {"_id": 0})
         # query = spots.find({"building.code": "KNE"}, {"_id": 0})
 
-   
         query = spots.aggregate([
             {"$match": {}},
             {"$lookup":
                 {
                     "from": "buildings",
-                    "localField": "building_id",
+                    "localField": "buildingid",
                     "foreignField": "_id",
                     "as": "blah"
                 }
