@@ -108,6 +108,7 @@ class Command(BaseCommand):
 
         # spots json
         # note.. including {"_id": 0} in the find query will exclude ids
+
         spotList = [
             {
                 "name": "Mary Gates Espresso",
@@ -121,7 +122,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "buildingid": buildings.find_one({"code": "MGH"}, "_id") 
+                "building": buildings.find_one({"code": "MGH"}, "_id").get("_id")
             },
             {
                 "name": "Motosurf",
@@ -135,7 +136,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "buildingid": ObjectId("5e196c393e7c4f327f6cf049")  
+                "building": buildings.find_one({"code": "OUG"}, "_id").get("_id")
             },
             {
                 "name": "Sunrise Griddle",
@@ -149,7 +150,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "buildingid": buildings.find_one({"code": "JHN"}, "_id") 
+                "building": buildings.find_one({"code": "JHN"}, "_id").get("_id")
             },
             {
                 "name": "DUB Street Burgers, Husky Den",
@@ -163,7 +164,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "buildingid": buildings.find_one({"code": "KNE"}, {"_id"})     
+                "building": buildings.find_one({"code": "KNE"}, {"_id"}).get("_id")     
             },
             {
                 "name": "Pagliacci Pizza, Husky Den",
@@ -177,7 +178,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "buildingid": buildings.find_one({"code": "SUZ"}, "_id")     
+                "building": buildings.find_one({"code": "SUZ"}, "_id").get("_id")     
             },
             {
                 "name": "Pagliacci Pizza, Kane Basement",
@@ -191,7 +192,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "buildingid": buildings.find_one({"code": "KNE"}, "_id")     
+                "building": buildings.find_one({"code": "KNE"}, "_id").get("_id")     
             },
         ]
 

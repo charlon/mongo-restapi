@@ -35,14 +35,14 @@ class SpotAPIView(View):
             {"$lookup":
                 {
                     "from": "buildings",
-                    "localField": "buildingid",
+                    "localField": "building",
                     "foreignField": "_id",
-                    "as": "blah"
+                    "as": "building"
                 }
             },
         ])
 
         # bson.json_util "dumps" - used for converting bson data to json
-        results = query
+        results = dumps(query)
 
         return HttpResponse(results)
