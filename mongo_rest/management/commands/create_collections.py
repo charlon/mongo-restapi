@@ -122,7 +122,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": buildings.find_one({"code": "MGH"}, "_id").get("_id")
+                "building": buildings.find_one({"code": "MGH"}).get("_id")
             },
             {
                 "name": "Motosurf",
@@ -136,7 +136,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": buildings.find_one({"code": "OUG"}, "_id").get("_id")
+                "building": buildings.find_one({"code": "OUG"}).get("_id")
             },
             {
                 "name": "Sunrise Griddle",
@@ -150,7 +150,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": buildings.find_one({"code": "JHN"}, "_id").get("_id")
+                "building": buildings.find_one({"code": "JHN"}).get("_id")
             },
             {
                 "name": "DUB Street Burgers, Husky Den",
@@ -164,7 +164,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": buildings.find_one({"code": "KNE"}, {"_id"}).get("_id")     
+                "building": buildings.find_one({"code": "KNE"}).get("_id")
             },
             {
                 "name": "Pagliacci Pizza, Husky Den",
@@ -178,7 +178,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": buildings.find_one({"code": "SUZ"}, "_id").get("_id")     
+                "building": buildings.find_one({"code": "SUZ"}).get("_id")
             },
             {
                 "name": "Pagliacci Pizza, Kane Basement",
@@ -192,7 +192,7 @@ class Command(BaseCommand):
                     "saturday": [["09:00", "13:00"]],
                     "sunday": []
                 },
-                "building": buildings.find_one({"code": "KNE"}, "_id").get("_id")     
+                "building": buildings.find_one({"code": "KNE"}).get("_id")
             },
         ]
 

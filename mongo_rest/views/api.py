@@ -21,13 +21,13 @@ class SpotAPIView(View):
         db.authenticate(os.getenv("MONGODB_USERNAME"),
                         os.getenv("MONGODB_PASSWORD"))
 
-        # get/create empty collections
+        # get collections
         buildings = db.buildings
         spots = db.spots
 
         # example queries - ids are excluded from the final results
         # query = spots.find({})
-        # query = spots.find({"_id": ObjectId("5e0e2d2ec852de2cd7e0cfe4")}, {"_id": 0})
+        # query = spots.find({"_id": ObjectId("7e0cfe4")}, {"_id": 0})
         # query = spots.find({"building.code": "KNE"}, {"_id": 0})
 
         query = spots.aggregate([
@@ -38,8 +38,7 @@ class SpotAPIView(View):
                     "localField": "building",
                     "foreignField": "_id",
                     "as": "building"
-                }
-            },
+                }},
         ])
 
         # bson.json_util "dumps" - used for converting bson data to json
