@@ -25,18 +25,22 @@ class SpotAPIView(View):
         buildings = db.buildings
         spots = db.spots
 
-        # example queries - ids are excluded from the final results
-        # query = spots.find({})
-        # query = spots.find({"_id": ObjectId("7e0cfe4")}, {"_id": 0})
-        # query = spots.find({"building.code": "KNE"}, {"_id": 0})
+        # example match queries
+        # {"$match": {}}
+        # {"$match": {"building_id": ObjectId("5e1cece12309a4bee5b53842")}}
+        # {"$match": {"type": "cafe"}}
+
+        # $match all spots against the given "building_id", perform a $lookup
+        # against the "buildings" collection...
+        # the results are aggregated into a subdocument called "building"
 
         query = spots.aggregate([
-            {"$match": {}},
+            {"$match": {"building_id": ObjectId("5e1cece12309a4bee5b53842")}},
             {"$lookup":
                 {
                     "from": "buildings",
-                    "localField": "building",
                     "foreignField": "_id",
+                    "localField": "building_id",
                     "as": "building"
                 }},
         ])
