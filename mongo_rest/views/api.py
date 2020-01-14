@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
-import json
 load_dotenv()
 
 
@@ -27,7 +26,7 @@ class SpotAPIView(View):
 
         # example match queries
         # {"$match": {}}
-        # {"$match": {"building_id": ObjectId("5e1cece12309a4bee5b53842")}}
+        # {"$match": {"building_id": ObjectId("5e1e0f4445a0c1211b513aa1")}}
         # {"$match": {"type": "cafe"}}
 
         # $match all spots against the given "building_id", perform a $lookup
@@ -35,7 +34,7 @@ class SpotAPIView(View):
         # the results are aggregated into a subdocument called "building"
 
         query = spots.aggregate([
-            {"$match": {"building_id": ObjectId("5e1cece12309a4bee5b53842")}},
+            {"$match": {}},
             {"$lookup":
                 {
                     "from": "buildings",
