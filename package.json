@@ -45,7 +45,7 @@
     "vue-underscore": "^0.1.4",
     "webpack": "^4.41.2",
     "webpack-bundle-tracker": "^0.4.3",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {}
 }
