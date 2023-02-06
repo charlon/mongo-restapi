@@ -1,2 +1,8 @@
 [run]
 source = mongo_rest
+parallel = True
+
+[paths]
+source =
+  mongo_rest/
+  /app/mongo_rest/

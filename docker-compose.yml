@@ -1,43 +1,51 @@
-version: '3'
+version: '3.4'
 
-networks:
-  app-tier:
-    driver: bridge
 services:
   app:
-    environment:
-      - GOOGLE_ANALYTICS_KEY=${GOOGLE_ANALYTICS_KEY}
-    restart: always
-    container_name: mongo_rest_app
     build:
       context: .
+      target: app-container
+    restart: always
+    container_name: mongo_rest_app
+    environment:
+      - GOOGLE_ANALYTICS_KEY=${GOOGLE_ANALYTICS_KEY}
     volumes:
       - ./mongo_rest:/app/mongo_rest
+      - statics-volume:/static
     ports:
       - "${RUNSERVER_PORT:-8000}:8000"
+    stdin_open: true
+    tty: true
     networks:
       - app-tier
-  devtools:
+  node-bundler:
+    build:
+      context: .
+      target: node-bundler
     restart: always
-    container_name: mongo_rest_devtools
-    image: node:8.16.0-jessie
+    container_name: mongo_rest_node
+    ports:
+      - "${BUNDLE_ANALYZER_PORT:-8888}:8888" # Required when environment.BUNDLE_ANALYZER is true
+    environment:
+      VUE_DEVTOOLS: "True"
+      BUNDLE_ANALYZER: "True"
     volumes:
-      - ./package.json:/devtools/mongo-restapi/package.json
-      - ./webpack.config.js:/devtools/mongo-restapi/webpack.config.js
-      - ./mongo_rest:/devtools/mongo-restapi/mongo_rest
-    working_dir: /devtools/mongo-restapi
-    command: bash -c "yes yes | npm install; npx webpack --watch --mode=development"
+      - ./mongo_rest:/app/mongo_rest # expose main django app so vite can output bundles here
+      - ./mongo_rest_vue:/app/mongo_rest_vue
+      - statics-volume:/static
+    command: npm run watch
+    stdin_open: true
+    tty: true
   db:
     container_name: mongo_rest_db
-    image: bitnami/mongodb:latest
+    image: mongo:latest
     environment:
-      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
-      - MONGODB_USERNAME=${MONGODB_USERNAME}
-      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
-      - MONGODB_DATABASE=${MONGODB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
     volumes:
-      - ./mongo-volume:/bitnami
+      - mongodb-volume:/data/db
     ports:
       - '27017:27017'
-    networks:
-      - app-tier
+volumes:
+  statics-volume:
+  mongodb-volume:

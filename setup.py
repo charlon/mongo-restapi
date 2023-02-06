@@ -25,8 +25,6 @@ setup(
     include_package_data=True,
     install_requires=[
         'django',
-        'django-webpack-loader',
-        'python-dotenv',
         'pymongo'
     ],
     license='Apache License, Version 2.0',

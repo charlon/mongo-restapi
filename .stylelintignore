@@ -1,2 +1,3 @@
 # Ignore bundles for stylelinting
 bundles/
+assets/

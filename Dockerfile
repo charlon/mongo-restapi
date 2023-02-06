@@ -1,33 +1,42 @@
-FROM acait/django-container:1.0.1 as django
+ARG DJANGO_CONTAINER_VERSION=1.4.1
+
+FROM gcr.io/uwit-mci-axdd/django-container:${DJANGO_CONTAINER_VERSION} as app-prebundler-container
 
 USER root
-RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
+
+RUN apt-get update && apt-get install -y libpq-dev
+
 USER acait
 
-ADD --chown=acait:acait mongo_rest/VERSION /app/mongo_rest/
-ADD --chown=acait:acait setup.py /app/
-ADD --chown=acait:acait requirements.txt /app/
-
-RUN . /app/bin/activate && pip install -r requirements.txt
-RUN . /app/bin/activate && pip install mysqlclient
-
 ADD --chown=acait:acait . /app/
-ADD --chown=acait:acait docker/app_deploy.sh /scripts/app_deploy.sh
-ADD --chown=acait:acait docker/app_start.sh /scripts/app_start.sh
-ADD --chown=acait:acait docker/ project/
-RUN chmod u+x /scripts/app_deploy.sh
-RUN . /app/bin/activate && pip install django-webpack-loader
+ADD --chown=acait:acait docker/ /app/project/
 
+#ADD --chown=acait:acait docker/app_start.sh /scripts
+#RUN chmod u+x /scripts/app_start.sh
 
-FROM node:8.16.0-jessie AS wpack
-ADD . /app/
+RUN /app/bin/pip install -r requirements.txt
+RUN /app/bin/pip install psycopg2
+
+FROM node:14.18.1-stretch AS node-bundler
+
+ADD ./package.json /app/
 WORKDIR /app/
 RUN npm install .
-RUN npx webpack --mode=production
 
-FROM django
+ADD . /app/
 
+ARG VUE_DEVTOOLS
+ENV VUE_DEVTOOLS=$VUE_DEVTOOLS
+RUN npm run build
 
-COPY --chown=acait:acait --from=wpack /app/mongo_rest/static/mongo_rest/bundles/* /app/mongo_rest/static/mongo_rest/bundles/
-COPY --chown=acait:acait --from=wpack /app/mongo_rest/static/ /static/
-COPY --chown=acait:acait --from=wpack /app/mongo_rest/static/webpack-stats.json /app/mongo_rest/static/webpack-stats.json
+FROM app-prebundler-container as app-container
+
+COPY --chown=acait:acait --from=node-bundler /app/mongo_rest/static /app/mongo_rest/static
+
+RUN /app/bin/python manage.py collectstatic --noinput
+
+FROM gcr.io/uwit-mci-axdd/django-test-container:${DJANGO_CONTAINER_VERSION} as app-test-container
+
+ENV NODE_PATH=/app/lib/node_modules
+COPY --from=app-container /app/ /app/
+COPY --from=app-container /static/ /static/
