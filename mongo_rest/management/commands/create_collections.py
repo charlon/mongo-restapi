@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.dbref import DBRef
 from bson.json_util import dumps
+
 load_dotenv()
 
 
@@ -16,8 +17,9 @@ class Command(BaseCommand):
 
         # authenticate to mongodb
         db = client[os.getenv("MONGODB_DATABASE")]
-        db.authenticate(os.getenv("MONGODB_USERNAME"),
-                        os.getenv("MONGODB_PASSWORD"))
+        db.authenticate(
+            os.getenv("MONGODB_USERNAME"), os.getenv("MONGODB_PASSWORD")
+        )
 
         # get/create empty collections
         buildings = db["buildings"]
@@ -29,9 +31,9 @@ class Command(BaseCommand):
         # check if collections have data... drop them and start fresh
         if ("spots" or "buildings") in collections:
             print("dropping collections")
-            if (buildings.count()):
+            if buildings.count():
                 buildings.drop()
-            if (spots.count()):
+            if spots.count():
                 spots.drop()
 
         # buildings json
@@ -46,8 +48,8 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "21:00"]],
                     "friday": [["08:00", "15:00"]],
                     "saturday": [["09:00", "17:00"]],
-                    "sunday": []
-                }
+                    "sunday": [],
+                },
             },
             {
                 "name": "Odegaard Undergraduate Library",
@@ -59,8 +61,8 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "21:00"]],
                     "friday": [["08:00", "15:00"]],
                     "saturday": [["09:00", "17:00"]],
-                    "sunday": []
-                }
+                    "sunday": [],
+                },
             },
             {
                 "name": "Johnson Hall",
@@ -72,8 +74,8 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "21:00"]],
                     "friday": [["08:00", "15:00"]],
                     "saturday": [["09:00", "17:00"]],
-                    "sunday": []
-                }
+                    "sunday": [],
+                },
             },
             {
                 "name": "Kane Hall",
@@ -85,8 +87,8 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "21:00"]],
                     "friday": [["08:00", "15:00"]],
                     "saturday": [["09:00", "17:00"]],
-                    "sunday": []
-                }
+                    "sunday": [],
+                },
             },
             {
                 "name": "Suzzallo Library",
@@ -98,9 +100,9 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "21:00"]],
                     "friday": [["08:00", "15:00"]],
                     "saturday": [["09:00", "17:00"]],
-                    "sunday": []
-                }
-            }
+                    "sunday": [],
+                },
+            },
         ]
 
         print("inserting buildings")
@@ -120,9 +122,9 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "17:00"]],
                     "friday": [["08:00", "13:00"]],
                     "saturday": [["09:00", "13:00"]],
-                    "sunday": []
+                    "sunday": [],
                 },
-                "building_id": buildings.find_one({"code": "MGH"}).get("_id")
+                "building_id": buildings.find_one({"code": "MGH"}).get("_id"),
             },
             {
                 "name": "Motosurf",
@@ -134,9 +136,9 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "17:00"]],
                     "friday": [["08:00", "13:00"]],
                     "saturday": [["09:00", "13:00"]],
-                    "sunday": []
+                    "sunday": [],
                 },
-                "building_id": buildings.find_one({"code": "OUG"}).get("_id")
+                "building_id": buildings.find_one({"code": "OUG"}).get("_id"),
             },
             {
                 "name": "Sunrise Griddle",
@@ -148,9 +150,9 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "17:00"]],
                     "friday": [["08:00", "13:00"]],
                     "saturday": [["09:00", "13:00"]],
-                    "sunday": []
+                    "sunday": [],
                 },
-                "building_id": buildings.find_one({"code": "JHN"}).get("_id")
+                "building_id": buildings.find_one({"code": "JHN"}).get("_id"),
             },
             {
                 "name": "DUB Street Burgers, Husky Den",
@@ -162,9 +164,9 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "17:00"]],
                     "friday": [["08:00", "13:00"]],
                     "saturday": [["09:00", "13:00"]],
-                    "sunday": []
+                    "sunday": [],
                 },
-                "building_id": buildings.find_one({"code": "KNE"}).get("_id")
+                "building_id": buildings.find_one({"code": "KNE"}).get("_id"),
             },
             {
                 "name": "Pagliacci Pizza, Husky Den",
@@ -176,9 +178,9 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "17:00"]],
                     "friday": [["08:00", "13:00"]],
                     "saturday": [["09:00", "13:00"]],
-                    "sunday": []
+                    "sunday": [],
                 },
-                "building_id": buildings.find_one({"code": "SUZ"}).get("_id")
+                "building_id": buildings.find_one({"code": "SUZ"}).get("_id"),
             },
             {
                 "name": "Pagliacci Pizza, Kane Basement",
@@ -190,9 +192,9 @@ class Command(BaseCommand):
                     "thursday": [["08:00", "17:00"]],
                     "friday": [["08:00", "13:00"]],
                     "saturday": [["09:00", "13:00"]],
-                    "sunday": []
+                    "sunday": [],
                 },
-                "building_id": buildings.find_one({"code": "KNE"}).get("_id")
+                "building_id": buildings.find_one({"code": "KNE"}).get("_id"),
             },
         ]
 
