@@ -5,11 +5,9 @@ import os
 from django.core.management.base import BaseCommand
 from django.http import HttpResponse
 from django.views import View
-from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
-load_dotenv()
 
 
 class SpotAPIView(View):

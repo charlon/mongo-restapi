@@ -16,8 +16,6 @@ services:
       - "${RUNSERVER_PORT:-8000}:8000"
     stdin_open: true
     tty: true
-    networks:
-      - app-tier
   node-bundler:
     build:
       context: .
@@ -40,8 +38,8 @@ services:
     container_name: mongo_rest_db
     image: mongo:latest
     environment:
-      - MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
     volumes:
       - mongodb-volume:/data/db
     ports:
