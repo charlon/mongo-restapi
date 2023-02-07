@@ -25,7 +25,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'django',
-        'pymongo'
+        'pymongo',
     ],
     license='Apache License, Version 2.0',
     description='A tool for visually displaying UW course prerequisites',

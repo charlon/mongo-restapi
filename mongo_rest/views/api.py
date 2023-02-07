@@ -14,12 +14,14 @@ class SpotAPIView(View):
     def get(self, request):
 
         # connect to "mongo_rest_db" via internal network
-        client = MongoClient("mongodb://mongo_rest_db:27017/")
+        client = MongoClient(
+            os.getenv("MONGODB_CLIENT"),
+            username=os.getenv("MONGODB_ROOT_USERNAME"),
+            password=os.getenv("MONGODB_ROOT_PASSWORD"),
+        )
 
-        # authenticate to mongodb
+        # get database
         db = client[os.getenv("MONGODB_DATABASE")]
-        db.authenticate(os.getenv("MONGODB_USERNAME"),
-                        os.getenv("MONGODB_PASSWORD"))
 
         # get collections
         buildings = db.buildings
@@ -34,16 +36,19 @@ class SpotAPIView(View):
         # against the "buildings" collection...
         # the results are aggregated into a subdocument called "building"
 
-        query = spots.aggregate([
-            {"$match": {}},
-            {"$lookup":
+        query = spots.aggregate(
+            [
+                {"$match": {}},
                 {
-                    "from": "buildings",
-                    "foreignField": "_id",
-                    "localField": "building_id",
-                    "as": "building"
-                }},
-        ])
+                    "$lookup": {
+                        "from": "buildings",
+                        "foreignField": "_id",
+                        "localField": "building_id",
+                        "as": "building",
+                    }
+                },
+            ]
+        )
 
         # bson.json_util "dumps" - used for converting bson data to json
         results = dumps(query)

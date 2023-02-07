@@ -1,25 +1,23 @@
 import os
 from django.core.management.base import BaseCommand
-from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.dbref import DBRef
 from bson.json_util import dumps
-
-load_dotenv()
 
 
 class Command(BaseCommand):
     def handle(self, **options):
 
         # connect to 'mongo_rest_db' via internal network
-        client = MongoClient("mongodb://mongo_rest_db:27017/")
-
-        # authenticate to mongodb
-        db = client[os.getenv("MONGODB_DATABASE")]
-        db.authenticate(
-            os.getenv("MONGODB_USERNAME"), os.getenv("MONGODB_PASSWORD")
+        client = MongoClient(
+            os.getenv("MONGODB_CLIENT"),
+            username=os.getenv("MONGODB_ROOT_USERNAME"),
+            password=os.getenv("MONGODB_ROOT_PASSWORD"),
         )
+
+        # get database
+        db = client[os.getenv("MONGODB_DATABASE")]
 
         # get/create empty collections
         buildings = db["buildings"]
