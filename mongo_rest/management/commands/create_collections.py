@@ -1,4 +1,6 @@
 import os
+import json
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -22,6 +24,7 @@ class Command(BaseCommand):
         # get/create empty collections
         buildings = db["buildings"]
         spots = db["spots"]
+        airbnb = db["oahuListings"]
 
         # list the collections
         collections = db.list_collection_names()
@@ -198,3 +201,30 @@ class Command(BaseCommand):
 
         print("inserting spots")
         spots.insert_many(spotList)
+
+        # load airbnb data
+        print(
+            os.path.join(
+                settings.BASE_DIR,
+                "mongo_rest",
+                "data",
+                "oahuListings.json",
+            )
+        )
+
+        # https://bobbyhadz.com/blog/python-jsondecodeerror-extra-data
+        with open(
+            os.path.join(
+                settings.BASE_DIR,
+                "mongo_rest",
+                "data",
+                "oahuListings.json",
+            ),
+            "r",
+            encoding="utf-8",
+        ) as f:
+            file_data = json.load(f)
+
+        airbnb.insert_many(file_data)
+
+        client.close()
