@@ -203,22 +203,13 @@ class Command(BaseCommand):
         spots.insert_many(spotList)
 
         # load airbnb data
-        print(
-            os.path.join(
-                settings.BASE_DIR,
-                "mongo_rest",
-                "data",
-                "oahuListings.json",
-            )
-        )
-
         # https://bobbyhadz.com/blog/python-jsondecodeerror-extra-data
         with open(
             os.path.join(
                 settings.BASE_DIR,
                 "mongo_rest",
                 "data",
-                "oahuListings.json",
+                "updatedOahuListings.json",
             ),
             "r",
             encoding="utf-8",
